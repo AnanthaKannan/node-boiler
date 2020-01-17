@@ -2,7 +2,13 @@ const express = require("express");
 const router = express.Router();
 const AdminController = require('../controllers/admin')
 
-router.get('/check', AdminController.check)
+router.get('/check', AdminController.check);
+
+router.post('/checkpost', AdminController.checkPost);
+
+router.put('/checkput', AdminController.checkPut)
+
+router.delete('/checkdelete/:id/:commentid', AdminController.checkDelete)
 
 module.exports = router;
 
