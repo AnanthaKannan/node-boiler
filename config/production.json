@@ -1,0 +1,14 @@
+{
+    "jwtPrivateKey": "unsecureKey",
+    "mailServcie" : "gmail",
+    "db": "",
+    "dbName":"editors_tool",
+    "port": "4000",
+    "requiresAuth": true,
+    "serverUrl": "http://localhost:4000",
+    "clientUrl": "http://localhost:3000",
+    "Environment": "Running in the development Environment Mode",
+    "ProductionEnv" : false,
+    "GrammarBotUrl": "localhost"
+  }
+  
