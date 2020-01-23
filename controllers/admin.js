@@ -1,6 +1,7 @@
 const { Admin } = require("../model/admin");
 
 exports.check = (req, res) => {
+    console.log("called")
     return res.status(200).json({
         status: 200,
         message: "Api called successfully..",
