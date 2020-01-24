@@ -10,7 +10,7 @@ module.exports = function() {
       useFindAndModify: false
     })
     .then(() => {
-        console.log(`Mongo dp connected... ${db}`)
+        console.log(`Mongo dp connecteds... ${db}`)
     }).catch((error) => {
         console.log(`${db} not connected..Node is Exiting...! ${error}`);
       process.exit(1);
