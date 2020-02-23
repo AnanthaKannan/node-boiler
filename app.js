@@ -8,6 +8,12 @@ app.use(express.json());
 require("./startup/routes")(app);
 require("./startup/db")();
 
+app.use((err, req, res, next)=>{
+    const errorMsg = err.message;
+    console.log("error", errorMsg);
+    res.send({ error: err.message})
+})
+
 
 const port = process.env.PORT || config.get("port");
 app.listen(port, () => console.log(`Listening on port ${port}...`));
