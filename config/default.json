@@ -1,7 +1,7 @@
 {
   "jwtPrivateKey": "unsecureKey",
   "mailServcie" : "gmail",
-  "db": "mongodb://mongo:27017/testt",
+  "db": "mongodb://172.17.0.2:27017/testt",
   "dbName":"testt",
   "port": "4000",
   "requiresAuth": true,
@@ -11,3 +11,5 @@
   "ProductionEnv" : false,
   "GrammarBotUrl": "localhost"
 }
+
+
