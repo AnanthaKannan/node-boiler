@@ -1,9 +1,0 @@
-@URL = http://localhost:4000
-@TYPE = /api/admin
-###
-GET {{URL}}{{TYPE}}/check
-Content-Type: application/json
-
-###
-DELETE {{URL}}{{TYPE}}/checkdelete/1234566/abcdfv
-Content-Type: application/json

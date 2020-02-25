@@ -2,13 +2,16 @@ const express = require("express");
 const router = express.Router();
 const AdminController = require('../controllers/admin')
 
-router.get('/check', AdminController.check);
-
-router.post('/checkpost', AdminController.checkPost);
-
-router.put('/checkput', AdminController.checkPut)
-
-router.delete('/checkdelete/:id/:commentid', AdminController.checkDelete)
+// add admin
+router.post('/addAdmin', AdminController.addAdmin);
+// get all
+router.get('/getAdmin', AdminController.getAdmin);
+// get by mail id
+router.get('/getAdminByMail', AdminController.getAdminByMail);
+// update
+router.put('/updateAdminByMail/:old_email/:new_email', AdminController.updateAdminByMail)
+// delete mail id
+router.delete('/deletAdminById/:_id', AdminController.deletAdminById)
 
 module.exports = router;
 
