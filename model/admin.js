@@ -7,6 +7,9 @@ const adminSchema = new mongoose.Schema({
     minlength: 0,
     maxlength: 50,
     default: ""
+  },
+  mailId:{
+    required:true,
   }
 });
 
