@@ -1,19 +1,43 @@
 const { Admin } = require("../model/admin");
 
-exports.check = (req, res) => {
-    console.log("called")
+
+exports.addAdmin = async(req, res) => {
+    const body = req.body;
+    const admin = new Admin(body);
+    await admin.save();
     return res.status(200).json({
         status: 200,
-        message: "Api called successfully..",
-        data: []
+        message: "Admin successfully added.."
     });
 }
 
-exports.checkPost = (req, res) => {
+exports.getAdmin = async(req, res) => {
+    const data = await Admin.find({});
     return res.status(200).json({
         status: 200,
-        message: "Api called successfully..",
-        data: []
+        message: "Data suessfully fetched",
+        data
+    });
+}
+
+exports.getAdminByMail = async(req, res) => {
+    const {email} = req.query;
+    const data = await Admin.findOne({ email });
+    return res.status(200).json({
+        status: 200,
+        message: "Data suessfully fetched...",
+        data
+    });
+}
+
+exports.updateAdminByMail = async(req, res) =>{
+    const {old_email, new_email} = req.params;
+    const data = await Admin.updateMany({email:old_email}, { $set: { email: new_email } } );
+    console.log("data", data);
+    return res.status(200).json({
+        status: 200,
+        message: "Successfully updated",
+        updated_count: data.n
     });
 }
 
@@ -25,32 +49,13 @@ exports.checkPut = (req, res) => {
     });
 }
 
-exports.checkDelete = (req, res) => {
-    const id = req.params.id, //assume get 54fcb3890cba9c4234f5c925
-    commentid = req.params.commentid; // assume get 54fcb3890cba9c4234f5c925
-
+exports.deletAdminById = async(req, res) => {
+    const {_id} = req.params; //assume get 54fcb3890cba9c4234f5c925
+    const data = await Admin.deleteOne({ _id });
+    console.log(data)
     return res.status(200).json({
         status: 200,
-        message: "Api called successfully..",
-        data: {id, commentid}
+        message: "Successfully Deleted",
+        deletedCount: data.deletedCount
     });
 }
-
-
-exports.dbcheck = (req, res) => {
-    Admin.find({})
-        .then((data) => {
-            return res.status(200).json({
-                status: 200,
-                message: "All User fetched Successfully !",
-                data: Userlist
-            });
-        })
-        .catch((error) => {
-            return res.status(400).json({
-                status: 200,
-                message: "something went wrong",
-                data: Userlist
-            });
-        });
-};

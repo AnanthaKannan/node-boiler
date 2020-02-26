@@ -3,18 +3,16 @@ const router = express.Router();
 const AdminController = require('../controllers/admin');
 
 
-
-// create the new admin
-router.post('/add_amim', AdminController.checkPost);
-
-// get the data
-router.get('/check', AdminController.check);
-
-// update the collection
-router.put('/checkput', AdminController.checkPut)
-
-// delete the collection
-router.delete('/checkdelete/:id/:commentid', AdminController.checkDelete)
+// add admin
+router.post('/addAdmin', AdminController.addAdmin);
+// get all
+router.get('/getAdmin', AdminController.getAdmin);
+// get by mail id
+router.get('/getAdminByMail', AdminController.getAdminByMail);
+// update
+router.put('/updateAdminByMail/:old_email/:new_email', AdminController.updateAdminByMail)
+// delete mail id
+router.delete('/deletAdminById/:_id', AdminController.deletAdminById)
 
 module.exports = router;
 
