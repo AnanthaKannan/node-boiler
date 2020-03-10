@@ -2,7 +2,14 @@ require("express-async-errors");
 const express = require("express");
 const app = express();
 const config = require("config");
-const error = require("./startup/error")
+let counter = 0
+
+app.use(express.static('dist', {
+    setHeaders: (res, path, stat) => {
+      console.log(++counter)
+    }
+}));
+  
 
 require("./startup/cors")(app);
 app.use(express.json());
