@@ -11,10 +11,10 @@ app.use(express.static('dist', {
 }));
   
 
-require("./startup/cors")(app);
+require("./middleware/cors")(app);
 app.use(express.json());
-require("./startup/routes")(app);
-require("./startup/db")();
+require("./index")(app);
+require("./database/db")();
 
 const port = process.env.PORT || config.get("port");
 app.listen(port, () => {

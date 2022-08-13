@@ -1,0 +1,99 @@
+swagger: "2.0"
+basePath: /api/v2
+info:
+  title: Sample API
+  description: Optional multiline or single-line description in the[https://editor.swagger.io/](https://editor.swagger.io/) or HTML.
+  version: 0.1.9
+
+schemes: [http, https]
+tags:
+- name: "admin"
+  description: "Everything about admin"
+  externalDocs:
+    description: "Find out more"
+    url: "http://swagger.io"
+
+paths:
+  /admin:
+    post:
+      tags:
+        - "admin"
+      summary: "Add a new admin"
+      description: "This can only be done by the super admin"
+      operationId: "admin_post"
+      x-swagger-auth:
+        - "basic"
+        - "apiKey"
+      parameters:
+        - name: body
+          in: body
+          description: "Created user object"
+          required: true
+          schema:
+            $ref: "#/definitions/Admin"
+      responses:
+        "405":
+          description: "Invalid input"
+        "200":
+          description: "User added to the system"
+          schema:
+            type: "object"
+            items:
+              $ref: "#/definitions/MessageResponse"
+      security:
+        - Bearer: []
+    get:
+      tags:
+        - "admin"
+      summary: "list all admins"
+      description: "list the all admins"
+      operationId: "admin_list"
+      parameters:
+        - $ref: "#/parameters/filter"
+      x-swagger-auth:
+        - "basic"
+        - "apiKey"
+      responses:
+        "200":
+          description: "An array of admin"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Admin"
+      security:
+        - Bearer: []
+
+securityDefinitions:
+  Bearer:
+    type: apiKey
+    name: Authorization
+    in: header
+
+definitions:
+  Admin:
+    type: object
+    required: [id, name, email]
+    properties:
+      id:
+        type: integer
+        format: int64
+      name:
+        type: string
+      email:
+        type: string
+  MessageResponse:
+    type: object
+    required: [message]
+    properties:
+      message:
+        type: string
+
+parameters:
+  filter:
+    description: "Filter to provide as a query parameter"
+    default: []
+    in: query
+    items:
+      type: string
+    name: filter
+    type: array

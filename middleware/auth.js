@@ -1,8 +1,12 @@
 const jwt = require("jsonwebtoken");
 const config = require("config");
-// const logger  = require('../startup/logging');
 
 module.exports = function(req, res, next) {
+
+  const method = req.method.toLowerCase();
+  const authList = req.swagger && req.swagger.path[method] && req.swagger.path[method]['x-swagger-auth'];
+  console.log('auth validation', authList)
+  return next()
   
   const token = req.header("x-access-token");
   if (!token){
