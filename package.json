@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/AnanthaKannan/node-boiler#readme",
   "dependencies": {
+    "app-root-path": "^3.0.0",
     "config": "^3.2.5",
     "cors": "^2.8.5",
     "express": "^4.17.1",
@@ -29,6 +30,8 @@
     "jsonwebtoken": "^8.5.1",
     "mongodb": "^3.5.3",
     "mongoose": "^5.8.7",
-    "swagger-tools": "^0.10.4"
+    "swagger-tools": "^0.10.4",
+    "winston": "^3.8.1",
+    "winston-daily-rotate-file": "^4.7.1"
   }
 }

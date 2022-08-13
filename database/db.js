@@ -1,5 +1,8 @@
 const mongoose = require("mongoose");
 const config = require("config");
+
+const logger = require('../lib/logger')
+
 module.exports = function() {
   const db = config.get("db");
   mongoose
@@ -10,9 +13,9 @@ module.exports = function() {
       useFindAndModify: false
     })
     .then(() => {
-        console.log(`Mongo dp connecteds... ${db}`)
+      logger.info(`Mongo dp connected... ${db}`)
     }).catch((error) => {
-        console.log(`${db} not connected..Node is Exiting...! ${error}`);
+        logger.error(`${db} not connected..Node is Exiting...! ${error}`);
       process.exit(1);
     });
 };
