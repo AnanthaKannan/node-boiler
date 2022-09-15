@@ -19,5 +19,6 @@ require("./database/db")();
 const port = process.env.PORT || config.get("port");
 app.listen(port, () => {
     console.log(`Listening on port ${port}...`);
+    console.log('http://localhost:4000/docs/')
     console.log(`NODE_ENV: ${process.env.NODE_ENV}`)
 });
