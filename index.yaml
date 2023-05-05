@@ -35,11 +35,7 @@ paths:
         "405":
           description: "Invalid input"
         "200":
-          description: "User added to the system"
-          schema:
-            type: "object"
-            items:
-              $ref: "#/definitions/MessageResponse"
+          description: "OK"
       security:
         - Bearer: []
     get:

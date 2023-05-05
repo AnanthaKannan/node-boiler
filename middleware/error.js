@@ -1,6 +1,7 @@
-// const logger = require('../startup/logging');
+const logger = require('../lib/logger');
+
 module.exports = function (err, req, res, next) {
-    //   logger.error(err.message, err);
+    logger.error(err);
     res.status(500).json({
         status: 500,
         message: 'Something failed...',

@@ -3,6 +3,7 @@ const yaml = require('js-yaml');
 const fs = require('fs');
 
 const auth = require('./middleware/auth')
+const http = require('./middleware/http')
 const error = require("./middleware/error")
 const swaggerDefFileName = __dirname + '/index.yaml';
 
@@ -21,7 +22,7 @@ module.exports = (app) => {
     app.use(middleware.swaggerMetadata());
 
     // Validate request and response from the api
-    app.use(middleware.swaggerValidator({ validateResponse: true }));
+    app.use(middleware.swaggerValidator({}));
 
     // Token validation
     app.use(auth)
@@ -31,6 +32,9 @@ module.exports = (app) => {
 
     // Serve the Swagger documents and Swagger UI
     app.use(middleware.swaggerUi());
+
+    // Http response part
+    app.use(http.httpResponse)
 
     // common error handling
     app.use(error)

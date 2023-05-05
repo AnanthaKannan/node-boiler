@@ -1,20 +1,7 @@
 const { Admin } = require("../model/admin");
+const query = require('../lib/query')
+const utils = require('../lib/utils');
 
+exports.post = async(req, res, next) => next(utils.saveWithNull(res, query.save(req.body)))
 
-exports.post = async(req, res) => {
-    console.log('eeeeeeeeeeeeeee')
-    const body = req.body;
-    const admin = new Admin(body);
-    await admin.save();
-    return res.status(200).json({
-        message: "Admin successfully added.."
-    });
-}
-
-exports.list = async(req, res) => {
-    const queryParams = req.query;
-    console.log('queryParams', queryParams)
-    const data = await Admin.find({});
-    // console.log('data', data)
-    return res.status(200).send(data);
-}
+exports.list = async(req, res, next) => next(utils.list(res, query.find(req.query)))
